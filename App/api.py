@@ -128,7 +128,7 @@ def home():
 <h2>Nuovo Movimento</h2>
 
 <div class="card">
-  <form method="post" action="/api/movimenti">
+  <form method="post" action="/api/Movimenti">
     <input name="descrizione" placeholder="Descrizione" required />
     <input name="amount" type="number" step="0.01" placeholder="Importo (es. -250.00 / 1200.00)" required />
     <input name="subcategoryid" type="number" placeholder="SubCategory ID" required />
