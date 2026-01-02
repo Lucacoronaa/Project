@@ -1,0 +1,4 @@
+cose da fare ora:
+
+creare le tabelle sul db postgre in teoria 
+e capire come collegare il db al python
