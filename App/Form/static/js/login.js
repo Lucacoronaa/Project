@@ -44,3 +44,7 @@ async function login() {
 }
 
 $("btnLogin").addEventListener("click", login);
+
+document.getElementById("btnGoRegister").addEventListener("click", () => {
+    window.location.href = "/register";
+});

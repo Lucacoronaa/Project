@@ -20,3 +20,7 @@ def login_page(request: Request):
 @router.get("/movimenti")
 def movimenti_page(request: Request):
     return templates.TemplateResponse("movimenti.html", {"request": request})
+
+@router.get("/register")
+def register_page(request:Request):
+    return templates.TemplateResponse("register.html", {"request": request})
