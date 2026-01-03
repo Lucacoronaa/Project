@@ -9,7 +9,7 @@ from .db import engine
 
 
 router = APIRouter(prefix= "/api", tags = ["auth"])
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 SECRET_KEY = os.getenv("SECRET_KEY", "CHANGE_ME")
 ALGORITHM = "HS256"
 TOKEN_DAYS = 30
