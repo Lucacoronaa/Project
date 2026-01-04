@@ -18,7 +18,7 @@ async function api(path, opts={}) {
 async function ensureLogged(){
     try{
         const me = await api ("/api/me");
-        $("me").textContent = `user_id: ${me.user_id}`;
+        $("me").textContent = `Codice_Utente: ${me.user_id}`;
     }catch {
         window.location.href = "/login";
     }
@@ -27,9 +27,10 @@ async function ensureLogged(){
 function renderList(rows){
     const list = $("list");
     list.innerHTML = "";
-    if (!rows.length){
-        list.innerHTML ='<div class="muted">Nessun Movimento.</div';
-        return;
+    $("empty").classList.toggle("hidden", rows.length !== 0);
+    if (!rows.length) {
+      $("list").innerHTML = "";
+      return;
     }
     for (const r of rows) {
     const div = document.createElement("div");
@@ -64,9 +65,16 @@ async function addMovimento() {
   setMsg("ok", "");
 
   const body = new URLSearchParams();
+
+  const subId = $("subcategoryid").value;
+  if (!subId) {
+    setMsg("msg", "Seleziona ua categoria.");
+    return;
+  }
+  body.set("subcategoryid", subId);
+
   body.set("descrizione", $("descrizione").value.trim());
   body.set("amount", $("amount").value);
-  body.set("subcategoryid", $("subcategoryid").value);
   const d = $("datestate").value.trim();
   if (d) body.set("datestate", d);
 
@@ -96,7 +104,33 @@ $("btnReload").addEventListener("click", loadMovimenti);
 $("btnAdd").addEventListener("click", addMovimento);
 $("btnLogout").addEventListener("click", logout);
 
+async function loadSubCategories() {
+  const sel = $("subcategoryid");
+  if (!sel) return;
+  sel.innerHTML = `<option value="">Caricamento...</option>`;
+
+  const rows = await api("/api/sub-categories");
+
+  sel.innerHTML = `<option value="">Seleziona una categoria...</option>`;
+  
+  
+  for (const r of rows){
+
+    const id = r.id
+    const name = r.sub_category
+
+    if (!id || !name) continue;
+
+
+    const opt = document.createElement("option");
+    opt.value = r.id;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  }
+}
+
 (async function init(){
   await ensureLogged();
+  await loadSubCategories();
   await loadMovimenti();
 })();

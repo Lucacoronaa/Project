@@ -1,37 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Movimenti</title>
-    <link rel="stylesheet" href="/static/css/app.css">  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Movimenti</title>
+  <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body>
-    <div class="wrap">
-        <div class="card">
-            <div class="topbar">
-                <h1>Movimenti</h1>
-                <button id="btnLogout" class="secondary">Logout</button>
-            </div>
-
-            <div id="me" class="muted">...</div>
-
-            <h2>Nuovo movimento</h2>
-            <input id="descrizione" placeholder="Descrizione">
-            <input id="amount" type="number" step="0.01" placeholder="Importo (es. -12.50)">
-            <input id="subcategoryid" type="number" placeholder="Subcategory ID (es. 2)">
-            <input id="datestate" placeholder="Data opzionale (es. 2026-01-01 13:08:27 +0100)">
-            <button id="btnAdd">Salva</button>
-
-            <div id="msg" class="msg error hidden"></div>
-            <div id="ok" class="msg ok hidden"></div>
-
-            <h2>Lista</h2>
-            <button id="btnReload" class="secondary">Ricarica</button>
-            <div id="list" class="list"></div>
-        </div>
+  <div class="wrap">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <div class="app-title">Finance Tracker</div>
+        <div class="app-subtitle">Movimenti</div>
+      </div>
+      <button id="btnLogout" class="secondary btn-small">Logout</button>
     </div>
 
-    <script src ="/static/js/movimenti.js"></script>
+    <div id="me" class="muted small">...</div>
+
+    <!-- Form card -->
+    <div class="card section">
+      <div class="section-title">Nuovo movimento</div>
+
+      <div class="row">
+        <label>Descrizione</label>
+        <input id="descrizione" placeholder="Es. Multa, Spesa supermercato, Stipendio">
+      </div>
+
+      <div class="row">
+        <label>Importo</label>
+        <input id="amount" type="number" step="0.01" placeholder="Es. 12.50">
+        <div class="hint">Inserisci sempre positivo. Il tipo (Income/Expense) lo decide la categoria.</div>
+      </div>
+
+      <div class="row">
+        <label>Categoria</label>
+        <select id="subcategoryid"></select>
+      </div>
+
+      <div class="row">
+        <label>Data (opzionale)</label>
+        <input id="datestate" placeholder="Es. 2026-01-01 13:08">
+      </div>
+
+      <button id="btnAdd" class="primary">Salva</button>
+
+      <div id="msg" class="msg error hidden"></div>
+      <div id="ok" class="msg ok hidden"></div>
+    </div>
+
+    <!-- List card -->
+    <div class="card section">
+      <div class="section-head">
+        <div class="section-title">Ultimi movimenti</div>
+        <button id="btnReload" class="secondary btn-small">Ricarica</button>
+      </div>
+
+      <div id="list" class="list"></div>
+      <div id="empty" class="muted small hidden">Nessun movimento.</div>
+    </div>
+  </div>
+
+  <script src="/static/js/movimenti.js"></script>
 </body>
 </html>
