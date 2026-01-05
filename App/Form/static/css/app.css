@@ -105,3 +105,42 @@ button.secondary { background:#e9e9ee; color:#111; }
 .item .desc { font-weight: 900; }
 .item .amt { font-weight: 900; font-size: 16px; }
 .item .meta { color:#666; font-size: 12px; margin-top: 4px; }
+
+
+/* --- Swipe row --- */
+.swipe-row {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.swipe-actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  z-index: 0;
+}
+
+.swipe-action {
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  user-select: none;
+}
+
+.swipe-action.left { background: #f1f1f5; }    /* modifica (poi) */
+.swipe-action.right { background: #ffe9ea; }   /* delete */
+
+.swipe-content {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  transform: translateX(0px);
+  transition: transform 0.12s ease-out;
+  border-radius: 14px;
+}
